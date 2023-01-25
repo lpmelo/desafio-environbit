@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import ResponsiveAppBar from "./lib/elementComponents/AppBar/AppBar";
+import AppRoutes from "./routes/routes";
+import { LiveTvRounded } from "@mui/icons-material";
+import "./App.css";
 
 function App() {
+  const pages = [
+    { name: "Inicio", redirect: "/" },
+    { name: "Filmes", redirect: "/" },
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+        <ResponsiveAppBar
+          pages={pages}
+          AppBarClassName="appbar"
+          logoIcon={
+            <LiveTvRounded
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            />
+          }
+          logoTitle={"MOVIESPOT"}
+        />
+      </div>
+
+      <div className="root-container">
+        <AppRoutes />
+      </div>
+    </>
   );
 }
-
 export default App;
