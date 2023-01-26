@@ -6,22 +6,25 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
+import "./AppBar.css";
 
 const ResponsiveAppBar = ({ pages, AppBarClassName, logoIcon, logoTitle }) => {
+  const navigate = useNavigate();
   const handleClickRedirect = (url) => {
-    window.location.assign(url);
+    navigate(url);
   };
 
   return (
     <AppBar position="static" className={AppBarClassName}>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg" className="appbar-container">
         <Toolbar disableGutters>
           {logoIcon}
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => handleClickRedirect("/")}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -31,6 +34,7 @@ const ResponsiveAppBar = ({ pages, AppBarClassName, logoIcon, logoTitle }) => {
               color: "inherit",
               textDecoration: "none",
             }}
+            className="appbar-logo"
           >
             {logoTitle}
           </Typography>
